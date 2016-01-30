@@ -6,7 +6,7 @@ This repository is supposed to fix the bugs with OwnCloud 8.2.2+, since there ha
 
 Hopefully one day we can even make it possible to get it running with encryption.
 
-<b>If you want to work on this, PLEASE contact me via github or the owncloud-website.</b>
+<b>If you want to work on this, PLEASE contact me via github or the owncloud-website. You can find instructions on how to write addons for OC <a href="https://doc.owncloud.org/server/8.2/developer_manual//app/">here</a>.</b>
 
 TODO
 =================
