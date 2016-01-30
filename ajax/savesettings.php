@@ -8,3 +8,4 @@ if (OCP\Config::getSystemValue('latexsettings', 'true')=='true') {
 	OCP\Config::setSystemValue('versions', 'true');
 }
 
+?>

@@ -1,12 +1,9 @@
 <?php
 /**
- * ownCloud - files_latexeditor
+ * ownCloud - files_texteditor
  *
- * Change log:
- * A.Khalatyan 2013 - files_texteditor => files_latexeditor
- * 
  * @author Tom Needham
- * @copyright 2013 Tom Needham tom@owncloud.com
+ * @copyright 2011 Tom Needham contact@tomneedham.com
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -22,50 +19,56 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+// Init owncloud
+ 
+
+
 // Check if we are a user
 OCP\JSON::checkLoggedIn();
-OCP\JSON::callCheck();
 
 // Get paramteres
-$filecontents = $_POST['filecontents'];
+$filecontents = isset($_POST['filecontents']) ? $_POST['filecontents'] : false;
 $path = isset($_POST['path']) ? $_POST['path'] : '';
 $mtime = isset($_POST['mtime']) ? $_POST['mtime'] : '';
 
-if($path != '' && $mtime != '') {
+if($path != '' && $mtime != '' && $filecontents)
+{
 	// Get file mtime
-	$filemtime = \OC\Files\Filesystem::filemtime($path);
-	if($mtime != $filemtime) {
+	$filemtime = OC_Filesystem::filemtime($path);
+	if($mtime != $filemtime)
+	{
 		// Then the file has changed since opening
-		OCP\JSON::error(array('data' => array( 'message' => 'File: '.$path.' has been modified!')));
-		OCP\Util::writeLog(
-			'files_latexeditor',
-			"File: ".$path." modified since opening. ".$mtime."!=".$filemtime,
-			OCP\Util::ERROR
-			);
-	} else {
-		// File same as when opened, save file
-		if(\OC\Files\Filesystem::isUpdatable($path)) {
-			$filecontents = iconv(mb_detect_encoding($filecontents), "UTF-8", $filecontents);
-			\OC\Files\Filesystem::file_put_contents($path, $filecontents);
+		OCP\JSON::error();
+		OCP\Util::writeLog('files_latexeditor',"File: ".$path." modified since opening.",OCP\Util::ERROR);	
+	}
+	else
+	{
+		// File same as when opened
+		// Save file
+		if(OC_Filesystem::is_writable($path))
+		{
+			OC_Filesystem::file_put_contents($path, $filecontents);
 			// Clear statcache
 			clearstatcache();
 			// Get new mtime
-			$newmtime = \OC\Files\Filesystem::filemtime($path);
+			$newmtime = OC_Filesystem::filemtime($path);
 			OCP\JSON::success(array('data' => array('mtime' => $newmtime)));
-		} else {
+		}
+		else
+		{
 			// Not writeable!
-			OCP\JSON::error(array('data' => array( 'message' => 'Insufficient permissions')));
-			OCP\Util::writeLog(
-				'files_latexeditor',
-				"User does not have permission to write to file: ".$path,
-				OCP\Util::ERROR
-				);
+			OCP\JSON::error(array('data' => array( 'message' => 'Insufficient permissions')));	
+			OCP\Util::writeLog('files_latexeditor',"User does not have permission to write to file: ".$path,OCP\Util::ERROR);
 		}
 	}
-} else if($path == '') {
+} else if($path == ''){
 	OCP\JSON::error(array('data' => array( 'message' => 'File path not supplied')));
 	OCP\Util::writeLog('files_latexeditor','No file path supplied', OCP\Util::ERROR);
-} else if($mtime == '') {
+} else if($mtime == ''){
 	OCP\JSON::error(array('data' => array( 'message' => 'File mtime not supplied')));
 	OCP\Util::writeLog('files_latexeditor','No file mtime supplied' ,OCP\Util::ERROR);
+} else if(!$filecontents){
+	OCP\JSON::error(array('data' => array( 'message' => 'File contents not supplied')));
+	OCP\Util::writeLog('files_latexeditor','The file contents was not supplied',OCP\Util::ERROR);	
 }

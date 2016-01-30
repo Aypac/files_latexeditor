@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>test latex</title>
+        <link rel="stylesheet" href="/css/redmond/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#btn').button();
+                
+                
+                $( "#dlg:ui-dialog" ).dialog( "destroy" );
+	
+                $( "#dlg" ).dialog({
+                    modal: true,
+                    width: 450,
+                    height: 350,
+                    buttons: {
+                        Ok: function() {
+                            $( this ).dialog( "close" );
+                        },
+                        Compile: function(){
+                            $("#result").load("/latex/compile.php");
+                    
+                        },
+                        ViewPdf: function(){
+                            window.open("/latex/simple/simple.pdf", 'Simple.tex', ''); 
+                        }
+                
+                    }
+                });
+                
+                
+                
+                 
+            });
+        </script>
+
+    </head>
+    <body>
+        <div  style="width: 50%" >
+            <h1 class="ui-widget-header ">Mine data till you drop...</h1>
+            <span id="btn">Compile </span>
+            <div id="dlg" >
+                <div id="result" class="ui-widget " style="width: 400px;height: 200px"> 
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

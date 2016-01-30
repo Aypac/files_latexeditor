@@ -1,11 +1,11 @@
 <?xml version="1.0"?> 
 <info>
 	<id>files_latexeditor</id>
-	<name>LatexTex Editor and Compiler</name>
-	<description>Simple LaTex editor and compiler (depend on  'Text Editor').</description>
+	<name>LaTeXEditor</name>
+        <description>Simple LaTex editor and compiler (Standard 'Text Editor' must be enabled).</description>
 	<licence>AGPL</licence>
-	<author>Arman Khalatyan </author>
-	<require>6.0</require>
+	<author>Arman Khalatyan (OC7 compatibility by Dominique Caron) (OC8 compatibility by Alexander Agasiev) </author>
+	<require>5.0</require>
 	<shipped>false</shipped>
 	<default_enable/>
 </info>
