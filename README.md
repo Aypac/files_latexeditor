@@ -8,6 +8,13 @@ Hopefully one day we can even make it possible to get it running with encryption
 
 <b>If you want to work on this, PLEASE contact me via github or the owncloud-website. You can find instructions on how to write addons for OC <a href="https://doc.owncloud.org/server/8.2/developer_manual//app/">here</a>.</b>
 
+How to install
+=================
+Remove the old owncloud/apps/files_latexeditor folder if existing.
+Download and place the content of this repo into your owncloud/apps/ folder. The folder containing all the other folders and the README.md should be named files_latexeditor. Head over to you web-admin panel and get to the apps section. Press the small gear in the bottom left corner. Activate experimental apps. Go to "Not enabled" on the top left. Enable LaTeXEditor.
+Make sure you have latex installed, otherwise this app will do nothing (you can check that with "which latex" which should return a path.
+
+
 TODO
 =================
 <ul>

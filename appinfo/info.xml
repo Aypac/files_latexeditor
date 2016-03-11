@@ -1,11 +1,29 @@
 <?xml version="1.0"?> 
 <info>
 	<id>files_latexeditor</id>
-	<name>LaTeXEditor</name>
-        <description>Simple LaTex editor and compiler (Standard 'Text Editor' must be enabled).</description>
+	<name>LatexTex Editor and Compiler</name>
+	<description>Simple LaTex editor and compiler depend on files_texteditor. ALPHA VERSION.
+
+	    This Version can:
+
+	    - Add LaTeX button to normal text editor in OwnCloud 8.2.2
+
+	    - Call the compile Dialog
+
+	    - Compiling latex and writing the output to clouds filesystem
+
+	    - Preview the PDF by using 'ViewPDF' button
+	    
+	    This Version can NOT:
+
+	    - Update OwnCloud FileCache --> You compiled latex, you got a PDF, this pdf is basicly on your filesystem, but you can't see it. Never the less you can download it.
+
+	</description>
 	<licence>AGPL</licence>
-	<author>Arman Khalatyan (OC7 compatibility by Dominique Caron) (OC8 compatibility by Alexander Agasiev) </author>
-	<require>5.0</require>
-	<shipped>false</shipped>
+	<author>Arman Khalatyan, Alexander Agasiev</author>
+	<shipped>no</shipped>
 	<default_enable/>
+	<dependencies>
+		<owncloud min-version="8.1" />
+	</dependencies>
 </info>
