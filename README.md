@@ -18,7 +18,7 @@ Make sure you have latex installed, otherwise this app will do nothing (you can 
 TODO
 =================
 <ul>
-<li>Make it work with OwnCloud 8.2.2+</li>
+<li>update owncloud filecache to view the compiled pdf file</li>
 <li>Create a new entry on https://apps.owncloud.com</li>
 <li>Better Documentation</li>
 <li>Fix the bugs with the encryption-addon enables</li>
@@ -33,6 +33,10 @@ You MUST enable the standard "Text Editor" to allow this one.
 
 change log
 =================
+
+11.03.2016 - v1.3alpha
+OC8.2.2 compatibility.
+
 26.03.2015
 OC8 compatibility.
 
